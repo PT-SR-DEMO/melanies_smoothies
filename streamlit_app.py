@@ -3,6 +3,7 @@ import streamlit as st
 #Import the snowpark col function
 from snowflake.snowpark.functions import col
 import requests
+import pandas
 
 #set width of app
 st.set_page_config(layout="wide")
@@ -39,9 +40,15 @@ st.write("The name on your Smoothie will be:", name_on_order)
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 
 #This line displays our dataframe - we can use it later to check on things
-st.dataframe(data=my_dataframe, use_container_width=True)
+#st.dataframe(data=my_dataframe, use_container_width=True)
 
 #For testing
+#st.stop()
+
+
+#Converting the Snowpark Dataframe to a Pandas Dataframe
+pd_df = my_dataframe.to_pandas()
+st.dataframe(pd_df)
 st.stop()
 
 
