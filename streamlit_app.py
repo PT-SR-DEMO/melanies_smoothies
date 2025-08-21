@@ -35,7 +35,6 @@ st.write("The name on your Smoothie will be:", name_on_order)
 
 
 #Starting a session to connect to our table and get required column to add to dataframe
-session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 #This line displays our dataframe - we can use it later to check on things
