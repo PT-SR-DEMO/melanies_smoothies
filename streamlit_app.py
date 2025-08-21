@@ -36,10 +36,13 @@ st.write("The name on your Smoothie will be:", name_on_order)
 
 
 #Starting a session to connect to our table and get required column to add to dataframe
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 
 #This line displays our dataframe - we can use it later to check on things
-#st.dataframe(data=my_dataframe, use_container_width=True)
+st.dataframe(data=my_dataframe, use_container_width=True)
+
+#For testing
+st.stop()
 
 
 #Adding a select box for our ingredients
