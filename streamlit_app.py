@@ -1,6 +1,5 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 #Import the snowpark col function
 from snowflake.snowpark.functions import col
 
@@ -11,6 +10,9 @@ st.set_page_config(layout="wide")
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
 st.write("""Choose the fruits you want in your custom Smoothie!""")
+
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # ---------------------------------------------------------------------------------
 # Adding a select box
