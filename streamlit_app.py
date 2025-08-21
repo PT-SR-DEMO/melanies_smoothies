@@ -2,6 +2,7 @@
 import streamlit as st
 #Import the snowpark col function
 from snowflake.snowpark.functions import col
+import requests
 
 #set width of app
 st.set_page_config(layout="wide")
@@ -61,7 +62,13 @@ if ingredients_list:
     #this for loop is to populate our string list with the chosen fruits
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
-        
+        #New Section to display smoothiefroot nutrition information
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        #st.text(smoothiefroot_response.json())
+        #Now storing the JSON response as a dataframe
+        sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True)
+
+
     #outputting the ingredients STRING
     #st.write(ingredients_string)
 
@@ -85,7 +92,6 @@ if ingredients_list:
 
 
 #New Section to display smoothiefroot nutrition information
-import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 #st.text(smoothiefroot_response.json())
 
