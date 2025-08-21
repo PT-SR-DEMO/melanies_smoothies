@@ -75,13 +75,13 @@ if ingredients_list:
 
         #This code will get us the search_on value in the multi-select
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+        #st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
     
         
         #Subheader for nutrition info
         st.subheader(fruit_chosen + ' Nutrition Information')
         #New Section to display smoothiefroot nutrition information
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on) #this is where we specify the fruit now to show the table
         #st.text(smoothiefroot_response.json())
         #Now storing the JSON response as a dataframe
         sf_df = st.dataframe(data = smoothiefroot_response.json(), use_container_width = True)
